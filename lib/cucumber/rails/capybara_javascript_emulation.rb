@@ -53,20 +53,20 @@ module Cucumber
   end
 end
 
-class Capybara::Driver::RackTest::Node
+class Capybara::Driver::Node
   include Cucumber::Rails::CapybaraJavascriptEmulation
 end
 
 Before('~@no-js-emulation') do
   # Enable javascript emulation
-  Capybara::Driver::RackTest::Node.class_eval do
+  Capybara::Driver::Node.class_eval do
     alias_method :click, :click_with_javascript_emulation
   end
 end
 
 Before('@no-js-emulation') do
   # Disable javascript emulation
-  Capybara::Driver::RackTest::Node.class_eval do
+  Capybara::Driver::Node.class_eval do
     alias_method :click, :click_without_javascript_emulation
   end
 end
